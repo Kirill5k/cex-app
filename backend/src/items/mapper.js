@@ -4,7 +4,8 @@ class ItemMapper {
       id: item.boxId,
       name: item.boxName,
       image: item.imageUrls.large,
-      category: item.categoryName,
+      category: item.superCatName,
+      subCategory: item.categoryName,
       price: {
         sell: item.sellPrice,
         buy: item.cashPrice,

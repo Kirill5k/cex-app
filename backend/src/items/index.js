@@ -3,8 +3,9 @@ const ItemMapper = require('./mapper');
 const CexClient = require('./cexClient');
 const ItemService = require('./service');
 const ItemController = require('./controller');
+const config = require('../config');
 
-const cexUrl = process.env.CEX_URL;
+const cexUrl = config.cexUrl;
 const itemMapper = new ItemMapper();
 const cexClient = new CexClient(cexUrl, itemMapper);
 const itemService = new ItemService(cexClient);

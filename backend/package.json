@@ -1,13 +1,13 @@
 {
   "name": "cex-app",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node --exec babel-node src/server.js",
-    "dev": "set DEBUG=app & nodemon src/server.js --exec babel-node",
+    "start": "node --exec babel-node index.js",
+    "dev": "set DEBUG=app & nodemon index.js --exec babel-node",
     "build": "babel src —-out-dir dist",
-    "serve": "node dist/server.js",
-    "lint": "eslint src/server.js"
+    "serve": "node index.js",
+    "lint": "eslint index.js"
   },
   "author": "Kirill",
   "license": "ISC",
@@ -36,8 +36,7 @@
     "delay": "1000",
     "env": {
       "NODE_ENV": "development",
-      "PORT": 4000,
-      "CEX_URL": "https://wss2.cex.uk.webuy.io/v3/boxes"
+      "PORT": 4000
     }
   }
 }

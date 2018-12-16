@@ -4,7 +4,7 @@ const USER_ID_COOKIE_NAME = 'user-id';
 
 const addUserIdCookie = (res) => {
   const userId = uuidv4();
-  res.cookie(USER_ID_COOKIE_NAME, userId, {maxAge: 900000, httpOnly: true})
+  res.cookie(USER_ID_COOKIE_NAME, userId, {maxAge: 900000, httpOnly: true});
   return userId;
 };
 
