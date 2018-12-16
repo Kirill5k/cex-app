@@ -4,4 +4,9 @@ const config = {
   cexUrl: 'https://wss2.cex.uk.webuy.io/v3/boxes'
 };
 
-module.exports = Object.assign(config, require(`./${config.env}`));
+try {
+  const envConfig = require(`./${config.env}`);
+  module.exports = Object.assign(config, envConfig);
+} catch (e) {
+  module.exports = config;
+}
