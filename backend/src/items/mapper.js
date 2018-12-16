@@ -18,4 +18,4 @@ class ItemMapper {
   }
 }
 
-module.exports = new ItemMapper();
+module.exports = ItemMapper;

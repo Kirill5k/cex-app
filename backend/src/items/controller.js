@@ -1,8 +1,10 @@
-const itemService = require('./service');
-
 class ItemController {
+  constructor(itemService) {
+    this.itemService = itemService;
+  }
+
   search(req, res, next) {
-    itemService.search(req.query.q)
+    this.itemService.search(req.query.q)
       .then(items => res.json(items))
       .catch(next);
   }
@@ -12,4 +14,4 @@ class ItemController {
   }
 }
 
-module.exports = new ItemController();
+module.exports = ItemController;

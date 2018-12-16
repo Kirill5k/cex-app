@@ -1,9 +1,11 @@
-const cexClient = require('./cexClient');
+class ItemService {
+  constructor(cexClient) {
+    this.cexClient = cexClient;
+  }
 
-class Service {
   search(queryString) {
-    return cexClient.search(queryString);
+    return this.cexClient.search(queryString);
   }
 }
 
-module.exports = new Service();
+module.exports = ItemService;
