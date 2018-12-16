@@ -1,5 +1,5 @@
 const config = {
-  env:  process.env.NODE_ENV || config.dev,
+  env:  process.env.NODE_ENV || 'development',
   port: process.env.PORT || 3000,
   cexUrl: 'https://wss2.cex.uk.webuy.io/v3/boxes'
 };
