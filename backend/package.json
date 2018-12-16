@@ -1,0 +1,40 @@
+{
+  "name": "cex-app",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node --exec babel-node src/server.js",
+    "dev": "set DEBUG=app & nodemon src/server.js --exec babel-node",
+    "build": "babel src —-out-dir dist",
+    "serve": "node dist/server.js",
+    "lint": "eslint src/server.js"
+  },
+  "author": "Kirill",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "debug": "^4.1.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.0",
+    "eslint": "^5.10.0",
+    "nodemon": "^1.18.9"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "1000",
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": 4000,
+      "CEX_URL": "https://wss2.cex.uk.webuy.io/v3/boxes"
+    }
+  }
+}
