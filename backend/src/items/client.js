@@ -10,8 +10,9 @@ class CexClient {
   search(queryString) {
     return axios.get(`${this.url}`, {params: {q: queryString}})
       .then(response => response.data)
-      .then(responseBody => this.itemMapper.mapItems(responseBody.response.data.boxes))
-      .catch(({response}) => rethrow({status: response.status, message: response.data.response.error.internal_message}));
+      .then(responseBody => responseBody.response.data ? responseBody.response.data.boxes : [])
+      .then(boxes => this.itemMapper.mapItems(boxes))
+      .catch(({response}) => rethrow({status: response.status, message: response.data.response.error.internal_message}, `error from cexclient: ${response}`));
   }
 }
 

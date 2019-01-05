@@ -15,6 +15,4 @@ const userIdExtractor = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  userIdExtractor
-};
+module.exports = userIdExtractor;

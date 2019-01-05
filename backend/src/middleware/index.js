@@ -1,7 +1,7 @@
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const {userIdExtractor} = require('./users/tracking');
+const userIdExtractor = require('./userIdExtractor');
 
 module.exports = (app) => {
   app.use(morgan('tiny'));

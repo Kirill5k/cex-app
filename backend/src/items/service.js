@@ -1,10 +1,10 @@
 class ItemService {
-  constructor(cexClient) {
-    this.cexClient = cexClient;
+  constructor(client) {
+    this.client = client;
   }
 
   search(queryString) {
-    return this.cexClient.search(queryString);
+    return this.client.search(queryString);
   }
 }
 

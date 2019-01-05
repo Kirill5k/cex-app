@@ -1,15 +1,21 @@
 class ItemController {
-  constructor(itemService) {
+  constructor(itemService, cacheService) {
     this.itemService = itemService;
+    this.cacheService = cacheService;
   }
 
-  search(req, res, next) {
-    this.itemService.search(req.query.q)
+  async search(req, res, next) {
+    const searchQuery = req.query.q;
+    const cacheKey = `search/${searchQuery}`;
+
+    this.cacheService.get(cacheKey)
+      .catch(() => this.itemService.search(searchQuery).then(items => this.cacheService.set(cacheKey, items)))
       .then(items => res.json(items))
-      .catch(next);
+      .catch(next)
   }
 
   handleError(err, req, res, next) {
+    console.log(err);
     res.status(err.status || 500).json(err);
   }
 }

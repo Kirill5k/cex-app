@@ -1,16 +1,15 @@
 const express = require('express');
 const routes = require('./routes');
+const setupMiddleware = require('./middleware');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
-require('./middleware')(app);
+setupMiddleware(app);
 
 app.use('/api', routes);
 
 app.get('*', (req, res, next) => next({status: 404, message: 'not found'}));
 
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(err.status || 500).send(err);
-});
+app.use(errorHandler);
 
 module.exports = app;
