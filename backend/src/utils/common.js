@@ -1,6 +1,8 @@
+const logger = require('../logging');
+
 const rethrow = (error, message = '') => {
   if (message) {
-    console.log(message);
+    logger.error(message);
   }
   throw error;
 };

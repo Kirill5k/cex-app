@@ -16,6 +16,4 @@ const router = express.Router();
 
 router.get('/', (...args) => itemController.search(...args));
 
-router.use(itemController.handleError);
-
 module.exports = router;

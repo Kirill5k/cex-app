@@ -13,11 +13,6 @@ class ItemController {
       .then(items => res.json(items))
       .catch(next)
   }
-
-  handleError(err, req, res, next) {
-    console.log(err);
-    res.status(err.status || 500).json(err);
-  }
 }
 
 module.exports = ItemController;
