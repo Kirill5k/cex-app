@@ -10,7 +10,8 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'object-curly-spacing': ['error', 'always'],
+    'object-curly-spacing': ['error', 'never'],
+    'block-spacing': ['error', 'never'],
     'space-before-function-paren': ['error', 'never']
   },
   parserOptions: {

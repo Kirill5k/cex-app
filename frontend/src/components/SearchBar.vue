@@ -7,16 +7,12 @@
       placeholder="Search"
       @keyup.exact="search($event.target.value)"
     >
-    <button
-      v-if="searchQuery.length"
-      class="search-bar__clear-button"
-      @click="clear">
-      &#x2715;
-    </button>
   </div>
 </template>
 
 <script>
+import debounce from 'lodash.debounce'
+
 export default {
   name: 'SearchBar',
   data() {
@@ -25,13 +21,13 @@ export default {
     }
   },
   methods: {
-    search(queryString) {
+    search: debounce(function(queryString) {
       if (queryString.length > 2) {
         this.$emit('search', queryString)
       } else if (queryString.length === 0) {
         this.$emit('clear')
       }
-    },
+    }, 250),
     clear() {
       this.searchQuery = ''
       this.$emit('clear')
@@ -69,39 +65,9 @@ export default {
     backface-visibility: hidden;
     transform-style: preserve-3d;
 
+    &:hover,
     &:focus {
       outline: none;
-    }
-
-    &::placeholder {
-      color: color(#575756 a(0.8));
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-  }
-
-  &__clear-button {
-    position: absolute;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    top: 24px;
-    right: 32px;
-    font-size: 14px;
-    line-height: 18px;
-    cursor: pointer;
-    transition: all 250ms ease-in-out;
-    transform-style: preserve-3d;
-    font-weight: 500;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &:hover,
-  &:focus {
-    #{$c}__input {
       padding: 12px 0;
       outline: 0;
       border: 1px solid transparent;
@@ -110,8 +76,10 @@ export default {
       background-position: 100% center;
     }
 
-    #{$c}__clear-button {
-      right: 56px;
+    &::placeholder {
+      color: color(#575756 a(0.8));
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
   }
 }

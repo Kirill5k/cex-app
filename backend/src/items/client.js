@@ -12,7 +12,7 @@ class CexClient {
       .then(response => response.data)
       .then(responseBody => responseBody.response.data ? responseBody.response.data.boxes : [])
       .then(boxes => this.itemMapper.mapItems(boxes))
-      .catch(({response}) => rethrow({status: response.status, message: response.data.response.error.internal_message}, `error from cexclient: ${response}`));
+      .catch(({response}) => rethrow({status: response.status, message: response.data.response}, `error from cexclient: ${response.data}`));
   }
 }
 

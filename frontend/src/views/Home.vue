@@ -2,36 +2,27 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <search-bar @search="search" @clear="clear"/>
-    <div
-      v-for="item in items"
-      :key="item.id"
-    >
-      <p>{{ item.name }}</p>
-    </div>
+    <item-list
+      v-if="items"
+      :items="items"
+    />
   </div>
 </template>
 
 <script>
 import SearchBar from '@/components/SearchBar'
-import itemService from '@/services/ItemsService'
+import ItemList from '@/components/ItemList'
+import {mapActions, mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'home',
-  components: {
-    SearchBar
-  },
-  data() {
-    return {
-      items: []
-    }
+  components: {SearchBar, ItemList},
+  computed: {
+    ...mapState(['items'])
   },
   methods: {
-    async search(query) {
-      this.items = await itemService.search(query)
-    },
-    clear() {
-      this.items = []
-    }
+    ...mapActions(['search']),
+    ...mapMutations({clear: 'clearItems'})
   }
 }
 </script>
@@ -39,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 .home {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 </style>
